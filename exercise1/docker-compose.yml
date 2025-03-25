@@ -1,0 +1,11 @@
+services:
+  exercise1:
+    container_name: exercise1
+    image: mawojcik/exercise1:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ["gradle", "run"]
