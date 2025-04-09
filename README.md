@@ -15,7 +15,7 @@ Kod: [exercise1](https://github.com/mawojcik/ebiznes/tree/main/exercise1)
 
 **Zadanie 2** Framework Play and Scala
 
-:white_check_mark: 3.0 3.0 Należy stworzyć kontroler do Produktów [Link do commita 1](https://github.com/mawojcik/ebiznes/commit/b3ba114e41052bc9353fc45405809b8c793006c4)
+:white_check_mark: 3.0 Należy stworzyć kontroler do Produktów [Link do commita 1](https://github.com/mawojcik/ebiznes/commit/b3ba114e41052bc9353fc45405809b8c793006c4)
 
 :white_check_mark: 3.5 Do kontrolera należy stworzyć endpointy zgodnie z CRUD - dane pobierane z listy [Link do commita2 ](https://github.com/mawojcik/ebiznes/commit/bf24fd31f587333069b6d59b8eb6e2e0a33950dd)
 
@@ -28,4 +28,24 @@ skrypt uruchamiający aplikację via ngrok [Link do commita 4](https://github.co
 :x: 5.0 Należy dodać konfigurację CORS dla dwóch hostów dla metod CRUD [Link do commita 5](https://github.com/mawojcik/ebiznes/commit/7cd71d8f2c11e92063f3e71dcef75eccc5685838)
 
 
-Kod: [exercise1](https://github.com/mawojcik/ebiznes/tree/main/exercise2)
+Kod: [exercise2](https://github.com/mawojcik/ebiznes/tree/main/exercise2)
+
+
+**Zadanie 3** Kotlin
+
+:white_check_mark: 3.0 Należy stworzyć aplikację kliencką w Kotlinie we frameworku Ktor, która pozwala na przesyłanie wiadomości na platformę Discord [Link do commita 1](https://github.com/mawojcik/ebiznes/commit/9b9834d981aeef758c7701e033568477d4094aba)
+
+:x: 3.5 Aplikacja jest w stanie odbierać wiadomości użytkowników z platformy Discord skierowane do aplikacji (bota) [Link do commita2](https://github.com/mawojcik/ebiznes/commit/bf24fd31f587333069b6d59b8eb6e2e0a33950dd)
+
+:x: 4.0 Zwróci listę kategorii na określone żądanie użytkownika [Link do commita 3](https://github.com/mawojcik/ebiznes/commit/7cd71d8f2c11e92063f3e71dcef75eccc5685838)
+
+:x: 4.5 Zwróci listę produktów wg żądanej kategorii [Link do commita 4](https://github.com/mawojcik/ebiznes/commit/7cd71d8f2c11e92063f3e71dcef75eccc5685838)
+
+:x: 5.0 Aplikacja obsłuży dodatkowo jedną z platform: Slack, Messenger, Webex [Link do commita 5](https://github.com/mawojcik/ebiznes/commit/7cd71d8f2c11e92063f3e71dcef75eccc5685838)
+
+
+Kod: [exercise3](https://github.com/mawojcik/ebiznes/tree/main/zadanie3)
+
+
+
+
