@@ -47,5 +47,17 @@ Kod: [exercise2](https://github.com/mawojcik/ebiznes/tree/main/exercise2)
 Kod: [exercise3](https://github.com/mawojcik/ebiznes/tree/main/zadanie3)
 
 
+**Zadanie 4** Go
+
+:white_check_mark: 3.0 Należy stworzyć aplikację we frameworki echo w j. Go, która będzie miała kontroler Produktów zgodny z CRUD [Link do commita 1](https://github.com/mawojcik/ebiznes/commit/4cb379cc31073d4bdd4d4864aff8d3ed77f332b0)
+
+:white_check_mark: 3.5 Należy stworzyć model Produktów wykorzystując gorm oraz wykorzystać model do obsługi produktów (CRUD) w kontrolerze (zamiast listy) [Link do commita2](https://github.com/mawojcik/ebiznes/commit/4cb379cc31073d4bdd4d4864aff8d3ed77f332b0)
+
+:white_check_mark: 4.0 4.0 Należy dodać model Koszyka oraz dodać odpowiedni endpoint [Link do commita 3](https://github.com/mawojcik/ebiznes/commit/4cb379cc31073d4bdd4d4864aff8d3ed77f332b0)
+
+:white_check_mark: 4.5 Należy stworzyć model kategorii i dodać relację między kategorią, a produktem [Link do commita 4](https://github.com/mawojcik/ebiznes/commit/4cb379cc31073d4bdd4d4864aff8d3ed77f332b0)
+
+:white_check_mark: 5.0 pogrupować zapytania w gorm’owe scope'y [Link do commita 5](https://github.com/mawojcik/ebiznes/commit/e149b62ef9db3af140f0f18a90e1ca99056affa5)
 
 
+Kod: [exercise4](https://github.com/mawojcik/ebiznes/tree/main/exercise4)
