@@ -61,3 +61,8 @@ Kod: [exercise3](https://github.com/mawojcik/ebiznes/tree/main/zadanie3)
 
 
 Kod: [exercise4](https://github.com/mawojcik/ebiznes/tree/main/exercise4)
+
+Nagranie:
+
+https://github.com/user-attachments/assets/7f539d85-2463-4d1a-aba7-fb8941d1bc48
+
