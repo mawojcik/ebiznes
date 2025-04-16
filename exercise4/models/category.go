@@ -7,3 +7,9 @@ type Category struct {
 	Name     string    `json:"name"`
 	Products []Product `json:"products,omitempty"`
 }
+
+func ByName(name string) func(db *gorm.DB) *gorm.DB {
+	return func(db *gorm.DB) *gorm.DB {
+		return db.Where("name = ?", name)
+	}
+}

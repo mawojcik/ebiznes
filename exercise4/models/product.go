@@ -10,3 +10,15 @@ type Product struct {
 	CategoryID  uint    `json:"categoryID"`
 	Category    Category `json:"category" gorm:"foreignKey:CategoryID"`
 }
+
+func PriceAbove(price float64) func(db *gorm.DB) *gorm.DB {
+	return func(db *gorm.DB) *gorm.DB {
+		return db.Where("price > ?", price)
+	}
+}
+
+func BelongsToCategory(categoryID uint) func(db *gorm.DB) *gorm.DB {
+	return func(db *gorm.DB) *gorm.DB {
+		return db.Where("category_id = ?", categoryID)
+	}
+}
