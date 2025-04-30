@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useCart } from "./CartContext";
 
 const Products = () => {
     const [products, setProducts] = useState([]);
+    const { addToCart } = useCart();
 
     useEffect(() => {
         fetch("/api/products")
             .then((res) => res.json())
-            .then((data) => setProducts(data));
+            .then(setProducts);
     }, []);
-
-    const handleBuy = (product) => {
-        fetch("/api/payments", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ id: 0, product: product.name, amount: product.price }),
-        });
-    };
 
     return (
         <div>
@@ -25,8 +17,8 @@ const Products = () => {
             <ul>
                 {products.map((product) => (
                     <li key={product.id}>
-                        {product.name} – {product.price} zł{" "}
-                        <button onClick={() => handleBuy(product)}>Kup</button>
+                        {product.name} – {product.price} zł
+                        <button onClick={() => addToCart(product)}>Dodaj do koszyka</button>
                     </li>
                 ))}
             </ul>
