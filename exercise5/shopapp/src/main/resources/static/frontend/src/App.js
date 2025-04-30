@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import Products from './Products';
-import Payments from './Payments';
+import React from "react";
+import Products from "./Products";
+import Payments from "./Payments";
 
 function App() {
-  const [selectedProduct, setSelectedProduct] = useState(null);
-
-  return (
-      <div className="App">
-        <Products onSelect={setSelectedProduct} />
-        <Payments selectedProduct={selectedProduct} />
-      </div>
-  );
+    return (
+        <div>
+            <h1>Sklep</h1>
+            <Products />
+            <Payments />
+        </div>
+    );
 }
 
 export default App;

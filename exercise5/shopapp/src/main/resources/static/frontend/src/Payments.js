@@ -1,37 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-export default function Payments({ selectedProduct }) {
-    const [quantity, setQuantity] = useState(1);
-    const [message, setMessage] = useState('');
+const Payments = () => {
+    const [payments, setPayments] = useState([]);
 
-    const handlePay = () => {
-        fetch('http://localhost:8080/api/payments', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                productId: selectedProduct.id,
-                quantity: quantity
-            })
-        })
-            .then(res => res.text())
-            .then(setMessage)
-            .catch(console.error);
-    };
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetch("/api/payments")
+                .then((res) => res.json())
+                .then((data) => setPayments(data));
+        }, 1000);
 
-    if (!selectedProduct) return null;
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div>
-            <h2>Płatności</h2>
-            <p>Produkt: {selectedProduct.name}</p>
-            <input
-                type="number"
-                value={quantity}
-                min="1"
-                onChange={e => setQuantity(Number(e.target.value))}
-            />
-            <button onClick={handlePay}>Zapłać</button>
-            <p>{message}</p>
+            <h2>Historia płatności</h2>
+            <ul>
+                {payments.map((payment) => (
+                    <li key={payment.id}>
+                        {payment.product} – {payment.amount} zł
+                    </li>
+                ))}
+            </ul>
         </div>
     );
-}
+};
+
+export default Payments;
