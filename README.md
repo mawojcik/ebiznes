@@ -66,3 +66,24 @@ Nagranie:
 
 https://github.com/user-attachments/assets/7f539d85-2463-4d1a-aba7-fb8941d1bc48
 
+**Zadanie 5** Frontend
+
+:white_check_mark: 3.0 W ramach projektu należy stworzyć dwa komponenty: Produkty oraz Płatności; Płatności powinny wysyłać do aplikacji serwerowej dane, a w Produktach powinniśmy pobierać dane o produktach z aplikacji serwerowej [Link do commita 1](https://github.com/mawojcik/ebiznes/commit/87cf27a92953c40fe1fc3139033e257dc6d15621)
+
+:white_check_mark: 3.5 Należy dodać Koszyk wraz z widokiem; należy wykorzystać routing [Link do commita2](https://github.com/mawojcik/ebiznes/commit/ecb6c94bbb9808dbc5a464f97b63723a53c219f6)
+
+:white_check_mark: 4.0 Dane pomiędzy wszystkimi komponentami powinny być przesyłane za pomocą React hooks [Link do commita 3](https://github.com/mawojcik/ebiznes/commit/ecb6c94bbb9808dbc5a464f97b63723a53c219f6)
+
+:x: 4.5 Należy dodać skrypt uruchamiający aplikację serwerową oraz kliencką na dockerze via docker-compose [Link do commita 4](https://github.com/mawojcik/ebiznes)
+
+:x: 5.0 Należy wykorzystać axios’a oraz dodać nagłówki pod CORS [Link do commita 5](https://github.com/mawojcik/ebiznes)
+
+
+Kod: [exercise5](https://github.com/mawojcik/ebiznes/tree/main/exercise5/shopapp)
+
+Nagranie:
+
+https://github.com/user-attachments/assets/1ed53a77-3214-4025-8671-f4ba9d85edcb
+
+
+
