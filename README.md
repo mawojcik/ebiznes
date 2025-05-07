@@ -85,5 +85,19 @@ Nagranie:
 
 https://github.com/user-attachments/assets/1ed53a77-3214-4025-8671-f4ba9d85edcb
 
+**Zadanie 6** Testy
+
+:white_check_mark: 3.0 Należy stworzyć 20 przypadków testowych w CypressJS lub Selenium (Kotlin, Python, Java, JS, Go, Scala) [Link do commita 1](https://github.com/mawojcik/ebiznes/commit/08391da86151b72027ca7418643e26b9c7425e3d)
+
+:white_check_mark: 3.5 Należy rozszerzyć testy funkcjonalne, aby zawierały minimum 50 asercji [Link do commita2](https://github.com/mawojcik/ebiznes/commit/08391da86151b72027ca7418643e26b9c7425e3d)
+
+:x: 4.0 Należy stworzyć testy jednostkowe do wybranego wcześniejszego projektu z minimum 50 asercjami [Link do commita 3](https://github.com/mawojcik/ebiznes/)
+
+:x: 4.5 Należy dodać testy API, należy pokryć wszystkie endpointy z minimum jednym scenariuszem negatywnym per endpoint [Link do commita 4](https://github.com/mawojcik/ebiznes)
+
+:x: 5.0 Należy uruchomić testy funkcjonalne na Browserstacku [Link do commita 5](https://github.com/mawojcik/ebiznes)
 
 
+Kod: [exercise5](https://github.com/mawojcik/ebiznes/tree/main/exercise6)
+
+Nagranie:
