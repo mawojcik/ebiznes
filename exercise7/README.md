@@ -1,0 +1,3 @@
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=mawojcik_ebiznes&metric=bugs)](https://sonarcloud.io/summary/new_code?id=mawojcik_ebiznes)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=mawojcik_ebiznes&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=mawojcik_ebiznes)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=mawojcik_ebiznes&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=mawojcik_ebiznes)
