@@ -98,6 +98,19 @@ https://github.com/user-attachments/assets/1ed53a77-3214-4025-8671-f4ba9d85edcb
 :x: 5.0 Należy uruchomić testy funkcjonalne na Browserstacku [Link do commita 5](https://github.com/mawojcik/ebiznes)
 
 
-Kod: [exercise5](https://github.com/mawojcik/ebiznes/tree/main/exercise6)
+Kod: [exercise6](https://github.com/mawojcik/ebiznes/tree/main/exercise6)
 
-Nagranie:
+**Zadanie 7** Sonar
+
+:white_check_mark: 3.0 Należy dodać litera do odpowiedniego kodu aplikacji serwerowej w hookach gita [Link do commita 1](https://github.com/mawojcik/ebiznes/commit/79ddfc30d93531962a15102742a739e28c4ecef1)
+
+:white_check_mark: 3.5 Należy wyeliminować wszystkie bugi w kodzie w Sonarze (kod aplikacji serwerowej) [Link do commita2](https://github.com/mawojcik/ebiznes/commit/79ddfc30d93531962a15102742a739e28c4ecef1)
+
+:x: 4.0 Należy wyeliminować wszystkie zapaszki w kodzie w Sonarze (kod aplikacji serwerowej) [Link do commita 3](https://github.com/mawojcik/ebiznes/)
+
+:x: 4.5 Należy wyeliminować wszystkie podatności oraz błędy bezpieczeństwa w kodzie w Sonarze (kod aplikacji serwerowej) [Link do commita 4](https://github.com/mawojcik/ebiznes)
+
+:x: 5.0 Należy wyeliminować wszystkie błędy oraz zapaszki w kodzie aplikacji klienckiej [Link do commita 5](https://github.com/mawojcik/ebiznes)
+
+
+Kod: [exercise7](https://github.com/mawojcik/ebiznes/tree/main/exercise7)
