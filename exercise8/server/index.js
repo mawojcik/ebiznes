@@ -1,82 +1,98 @@
 const express = require('express');
+const session = require('express-session');
 const cors = require('cors');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+require('dotenv').config();
 const sqlite3 = require('sqlite3').verbose();
-const { v4: uuidv4 } = require('uuid');
+const crypto = require('crypto');
+
+const db = new sqlite3.Database('./users.db');
+db.run(`
+  CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    googleId TEXT,
+    username TEXT,
+    sessionToken TEXT
+  )
+`);
 
 const app = express();
-const db = new sqlite3.Database('./users.db');
-const PORT = 5001;
 
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}));
+app.use(express.json());
 
-// Tworzenie tabeli users
-db.run(`CREATE TABLE IF NOT EXISTS users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username TEXT UNIQUE,
-  password TEXT
-)`);
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
 
-// Tabela sesji
-db.run(`CREATE TABLE IF NOT EXISTS sessions (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  user_id INTEGER,
-  token TEXT,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY(user_id) REFERENCES users(id)
-)`);
+app.use(passport.initialize());
+app.use(passport.session());
 
-// Rejestracja
-app.post('/api/register', async (req, res) => {
-  const { username, password } = req.body;
-  db.get(`SELECT * FROM users WHERE username = ?`, [username], async (err, row) => {
-    if (row) return res.status(400).json({ message: 'Użytkownik już istnieje' });
-
-    const hashed = await bcrypt.hash(password, 10);
-    db.run(`INSERT INTO users (username, password) VALUES (?, ?)`, [username, hashed], function (err) {
-      if (err) return res.status(500).json({ message: 'Błąd serwera' });
-      res.json({ message: 'Zarejestrowano pomyślnie' });
-    });
+passport.serializeUser((user, done) => done(null, user.id));
+passport.deserializeUser((id, done) => {
+  db.get('SELECT * FROM users WHERE id = ?', [id], (err, row) => {
+    if (err) return done(err);
+    done(null, row);
   });
 });
 
-// Logowanie
-app.post('/api/login', (req, res) => {
-  const { username, password } = req.body;
-  db.get(`SELECT * FROM users WHERE username = ?`, [username], async (err, user) => {
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-      return res.status(401).json({ message: 'Nieprawidłowe dane logowania' });
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: '/api/auth/google/callback'
+}, (accessToken, refreshToken, profile, done) => {
+  const googleId = profile.id;
+  const username = profile.displayName;
+
+  db.get('SELECT * FROM users WHERE googleId = ?', [googleId], (err, row) => {
+    if (err) return done(err);
+
+    if (row) {
+      return done(null, row);
+    } else {
+      const sessionToken = crypto.randomBytes(32).toString('hex');
+      db.run('INSERT INTO users (googleId, username, sessionToken) VALUES (?, ?, ?)',
+        [googleId, username, sessionToken],
+        function (err) {
+          if (err) return done(err);
+          db.get('SELECT * FROM users WHERE id = ?', [this.lastID], (err, newUser) => {
+            if (err) return done(err);
+            done(null, newUser);
+          });
+        });
     }
-
-    const token = uuidv4();
-    db.run(`INSERT INTO sessions (user_id, token) VALUES (?, ?)`, [user.id, token], (err) => {
-      if (err) return res.status(500).json({ message: 'Błąd sesji' });
-      res.json({ sessionToken: token });
-    });
   });
-});
+}));
 
-// Sprawdzenie sesji
-app.get('/api/me', (req, res) => {
-  const auth = req.headers.authorization;
-  if (!auth || !auth.startsWith('Bearer ')) {
-    return res.status(401).json({ message: 'Brak tokena' });
+app.get('/api/auth/google',
+  passport.authenticate('google', { scope: ['profile'] })
+);
+
+app.get('/api/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: 'http://localhost:3000?error=login_failed' }),
+  (req, res) => {
+    const token = req.user.sessionToken;
+    res.redirect(`http://localhost:3000/?token=${token}`);
   }
+);
 
-  const token = auth.split(' ')[1];
-  db.get(`
-    SELECT users.username FROM sessions
-    JOIN users ON users.id = sessions.user_id
-    WHERE sessions.token = ?
-  `, [token], (err, row) => {
-    if (!row) return res.status(401).json({ message: 'Nieprawidłowy token' });
+app.get('/api/me', (req, res) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) return res.status(401).json({ message: 'Brak tokena' });
+
+  const token = authHeader.split(' ')[1];
+  db.get('SELECT username FROM users WHERE sessionToken = ?', [token], (err, row) => {
+    if (err || !row) return res.status(401).json({ message: 'Nieprawidłowy token' });
     res.json({ username: row.username });
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`✅ Serwer działa na http://localhost:${PORT}`);
+app.listen(5001, () => {
+  console.log('✅ Serwer działa na http://localhost:5001');
 });
-

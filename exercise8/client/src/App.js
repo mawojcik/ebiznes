@@ -1,33 +1,35 @@
 import React, { useEffect, useState } from 'react';
 
 function App() {
-  const [mode, setMode] = useState('login'); // 'login' | 'register'
+  const [mode, setMode] = useState('login');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('sessionToken');
-    if (token) {
-      fetch('http://localhost:1/api/me', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.username) {
-            setCurrentUser(data.username);
-            setMessage(`Zalogowano jako: ${data.username}`);
-          }
-        })
-        .catch((err) => {
-          console.error('Błąd pobierania danych użytkownika:', err);
-        });
-    }
-  }, []);
+  const params = new URLSearchParams(window.location.search);
+  const tokenFromUrl = params.get('token');
+  if (tokenFromUrl) {
+    localStorage.setItem('sessionToken', tokenFromUrl);
+    window.history.replaceState({}, document.title, '/');
+    setMessage('Zalogowano przez Google!');
+  }
+
+  const token = tokenFromUrl || localStorage.getItem('sessionToken');
+  if (token) {
+    fetch('http://localhost:5001/api/me', {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.username) {
+          setCurrentUser(data.username);
+        }
+      });
+  }
+}, []);
+
 
   
   const handleSubmit = async (e) => {
@@ -98,6 +100,15 @@ function App() {
           <button type="submit" style={{ padding: '0.5rem 1rem', marginTop: '1rem' }}>
             {mode === 'login' ? 'Zaloguj się' : 'Zarejestruj się'}
           </button>
+          <button
+            onClick={() => {
+              window.location.href = 'http://localhost:5001/api/auth/google';
+            }}
+            style={{ marginTop: '1rem' }}
+          >
+            Zaloguj przez Google
+          </button>
+
         </form>
       )}
 
