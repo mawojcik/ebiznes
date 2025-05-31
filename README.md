@@ -129,3 +129,10 @@ Kod: [exercise7](https://github.com/mawojcik/ebiznes/tree/main/exercise7)
 
 
 Kod: [exercise8](https://github.com/mawojcik/ebiznes/tree/main/exercise8)
+
+Nagranie:
+
+
+
+https://github.com/user-attachments/assets/6dac034e-bf5b-42c8-b1e4-e3b21c8f8bf5
+
