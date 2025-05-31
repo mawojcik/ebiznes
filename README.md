@@ -114,3 +114,18 @@ Kod: [exercise6](https://github.com/mawojcik/ebiznes/tree/main/exercise6)
 
 
 Kod: [exercise7](https://github.com/mawojcik/ebiznes/tree/main/exercise7)
+
+**Zadanie 8** Oauth2
+
+:white_check_mark: 3.0 logowanie przez aplikację serwerową (bez Oauth2) [Link do commita 1](https://github.com/mawojcik/ebiznes/commit/32d01b0ac6f37595d60220b398d621712d525d30)
+
+:white_check_mark: 3.5 rejestracja przez aplikację serwerową (bez Oauth2) [Link do commita2](https://github.com/mawojcik/ebiznes/commit/32d01b0ac6f37595d60220b398d621712d525d30)
+
+:white_check_mark: 4.0 logowanie via Google OAuth2 [Link do commita 3](https://github.com/mawojcik/ebiznes/commit/65c1b43694e3844f0cc91ac837a8152b526d7d62)
+
+:white_check_mark: 4.5 logowanie via Facebook lub Github OAuth2 [Link do commita 4](https://github.com/mawojcik/ebiznes/commit/b1c7f1a9825e59e4a25eb55f509db0885b0d4c7c)
+
+:white_check_mark: 5.0 zapisywanie danych logowania OAuth2 po stronie serwera [Link do commita 5](https://github.com/mawojcik/ebiznes/commit/b1c7f1a9825e59e4a25eb55f509db0885b0d4c7c)
+
+
+Kod: [exercise8](https://github.com/mawojcik/ebiznes/tree/main/exercise8)
