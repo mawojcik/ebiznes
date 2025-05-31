@@ -104,16 +104,26 @@ function App() {
             onClick={() => {
               window.location.href = 'http://localhost:5001/api/auth/google';
             }}
-            style={{ marginTop: '1rem' }}
+            style={{ padding: '0.5rem 1rem', marginTop: '1rem' }}
           >
             Zaloguj przez Google
+          </button>
+          <button
+            onClick={() => {
+              window.location.href = 'http://localhost:5001/api/auth/github';
+            }}
+            style={{ padding: '0.5rem 1rem', marginTop: '1rem' }}
+          >
+            Zaloguj przez GitHub
           </button>
 
         </form>
       )}
 
       <div style={{ marginTop: '1rem' }}>
-        <button onClick={() => setMode(mode === 'login' ? 'register' : 'login')}>
+        <button onClick={() => setMode(mode === 'login' ? 'register' : 'login')}
+          style={{ padding: '0.5rem 1rem', marginTop: '1rem' }}
+          >
           Przełącz na {mode === 'login' ? 'Rejestrację' : 'Logowanie'}
         </button>
       </div>

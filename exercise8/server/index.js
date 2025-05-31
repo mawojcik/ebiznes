@@ -6,16 +6,19 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 require('dotenv').config();
 const sqlite3 = require('sqlite3').verbose();
 const crypto = require('crypto');
+const GitHubStrategy = require('passport-github2').Strategy;
 
 const db = new sqlite3.Database('./users.db');
 db.run(`
   CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     googleId TEXT,
+    githubId TEXT,
     username TEXT,
     sessionToken TEXT
   )
 `);
+
 
 const app = express();
 
@@ -69,6 +72,48 @@ passport.use(new GoogleStrategy({
     }
   });
 }));
+
+passport.use(new GitHubStrategy({
+  clientID: process.env.GITHUB_CLIENT_ID,
+  clientSecret: process.env.GITHUB_CLIENT_SECRET,
+  callbackURL: "/api/auth/github/callback"
+},
+(accessToken, refreshToken, profile, done) => {
+  const githubId = profile.id;
+  const username = profile.username;
+
+  db.get('SELECT * FROM users WHERE githubId = ?', [githubId], (err, row) => {
+    if (err) return done(err);
+    if (row) {
+      return done(null, row);
+    } else {
+      const sessionToken = crypto.randomBytes(32).toString('hex');
+      db.run(
+        'INSERT INTO users (githubId, username, sessionToken) VALUES (?, ?, ?)',
+        [githubId, username, sessionToken],
+        function (err) {
+          if (err) return done(err);
+          db.get('SELECT * FROM users WHERE id = ?', [this.lastID], (err, newUser) => {
+            if (err) return done(err);
+            done(null, newUser);
+          });
+        }
+      );
+    }
+  });
+}));
+
+app.get('/api/auth/github',
+  passport.authenticate('github', { scope: [ 'user:email' ] })
+);
+
+app.get('/api/auth/github/callback',
+  passport.authenticate('github', { failureRedirect: 'http://localhost:3000?error=login_failed' }),
+  (req, res) => {
+    const token = req.user.sessionToken;
+    res.redirect(`http://localhost:3000/?token=${token}`);
+  }
+);
 
 app.get('/api/auth/google',
   passport.authenticate('google', { scope: ['profile'] })
