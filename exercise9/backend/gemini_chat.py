@@ -7,6 +7,19 @@ API_KEY = os.getenv("GEMINI_API_TOKEN")
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={API_KEY}"
 
 def send_to_gemini(history):
+    system_instruction = (
+    "Answer only questions relating cars and motorization. "
+    "If the question is not related to cars, respond with this but translate it language that user used: "
+    "'I can only answer questions about cars and motorization.'. "
+    "When someone finishes asking questions, respond with one of these messages in appropriate language: "
+    "'Do zobaczenia! Jeśli będziesz miał pytania, wróć śmiało.', "
+    "'Dziękuję za rozmowę! Miłego dnia i szerokiej drogi!', "
+    "'Na razie! Trzymaj się i dbaj o swój samochód.', "
+    "'Życzę bezpiecznej jazdy! Do następnego razu!', "
+    "'Cześć! Gdybyś czegoś potrzebował, zawsze tu jestem.'"
+    "Always translate the response to the language the user is using. "
+    )
+    history[0]["parts"][0]["text"] = system_instruction + history[0]["parts"][0]["text"]
     headers = {
         "Content-Type": "application/json"
     }

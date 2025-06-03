@@ -1,5 +1,17 @@
 let chatHistory = [];
 
+const greetings = [
+  "Cześć! W czym mogę Ci pomóc?",
+  "Hej! Gotowy na rozmowę?",
+  "Witaj! Zadaj mi pytanie, a postaram się pomóc.",
+  "Dzień dobry! Co Cię dzisiaj interesuje?",
+  "Witaj! O czym dziś porozmawiamy?"
+];
+
+const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+chatHistory.push({ role: "model", parts: [{ text: randomGreeting }] });
+updateChatUI();
+
 document.getElementById("send-btn").addEventListener("click", async () => {
   const inputEl = document.getElementById("prompt-input");
   const userInput = inputEl.value.trim();
