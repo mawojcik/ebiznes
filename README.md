@@ -151,3 +151,8 @@ https://github.com/user-attachments/assets/6dac034e-bf5b-42c8-b1e4-e3b21c8f8bf5
 
 
 Kod: [exercise9](https://github.com/mawojcik/ebiznes/tree/main/exercise9)
+
+Nagranie:
+
+https://github.com/user-attachments/assets/469f9713-aa0a-4c12-af48-2f35422f25c0
+
