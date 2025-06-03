@@ -16,7 +16,7 @@ def chat():
 
     if not history:
         return jsonify({"error": "No history found"}), 400
-    print("Received history:", history)
+        
     response_text = send_to_gemini(history)
 
     return jsonify({"response": response_text})
