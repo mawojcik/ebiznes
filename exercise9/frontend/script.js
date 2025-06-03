@@ -1,32 +1,38 @@
-async function sendPrompt() {
-  const prompt = document.getElementById("prompt").value;
-  const responseBox = document.getElementById("response");
-  responseBox.textContent = "Czekaj...";
+let chatHistory = [];
+
+document.getElementById("send-btn").addEventListener("click", async () => {
+  const inputEl = document.getElementById("prompt-input");
+  const userInput = inputEl.value.trim();
+  if (!userInput) return;
+
+  chatHistory.push({ role: "user", parts: [{ text: userInput }] });
+  inputEl.value = "";
+  updateChatUI();
 
   try {
-    console.log("Wysyłam zapytanie:", prompt);
-    const res = await fetch("http://127.0.0.1:5000/api/chat", {
+    const response = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt })
+      body: JSON.stringify({ history: chatHistory })
     });
 
-    console.log("Status odpowiedzi:", res.status);
-    if (!res.ok) {
-      responseBox.textContent = `Błąd serwera: ${res.status} ${res.statusText}`;
-      return;
-    }
-
-    const data = await res.json();
-    console.log("Odpowiedź z backendu:", data);
-
-    if (data.response) {
-      responseBox.textContent = data.response;
-    } else {
-      responseBox.textContent = "Brak odpowiedzi.";
-    }
+    const data = await response.json();
+    chatHistory.push({ role: "model", parts: [{ text: data.response }] });
+    updateChatUI();
   } catch (err) {
-    responseBox.textContent = "Błąd połączenia: " + err.message;
-    console.error(err);
+    chatHistory.push({ role: "model", parts: [{ text: "Błąd połączenia z serwerem." }] });
+    updateChatUI();
   }
+});
+
+function updateChatUI() {
+  const box = document.getElementById("chat-box");
+  box.innerHTML = "";
+  chatHistory.forEach(msg => {
+    const div = document.createElement("div");
+    div.className = msg.role;
+    div.textContent = `${msg.role === "user" ? "Ty" : "Asystent"}: ${msg.parts[0].text}`;
+    box.appendChild(div);
+  });
+  box.scrollTop = box.scrollHeight;
 }

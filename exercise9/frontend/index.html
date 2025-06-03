@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <title>Gemini Chat - Auta</title>
+  <meta charset="UTF-8">
+  <title>Gemini Chat</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Zapytaj o motoryzację</h1>
-  <textarea id="prompt" rows="4" cols="50" placeholder="Wpisz pytanie o samochody..."></textarea><br>
-  <button onclick="sendPrompt()">Wyślij</button>
-  <h2>Odpowiedź:</h2>
-  <pre id="response"></pre>
-
+  <div id="chat-box"></div>
+  <div id="input-area">
+    <input type="text" id="prompt-input" placeholder="Napisz wiadomość...">
+    <button id="send-btn">Wyślij</button>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

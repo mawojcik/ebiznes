@@ -1,33 +1,25 @@
 from flask import Flask, request, jsonify, send_from_directory
-import os
+from flask_cors import CORS
 from gemini_chat import send_to_gemini
 
 app = Flask(__name__, static_folder="../frontend", static_url_path="")
-from flask_cors import CORS
 CORS(app)
 
 @app.route("/")
-def serve_index():
-    return app.send_static_file("index.html")
-
+def index():
+    return send_from_directory("../frontend", "index.html")
 
 @app.route("/api/chat", methods=["POST"])
 def chat():
     data = request.get_json()
-    prompt = data.get("prompt", "")
+    history = data.get("history", [])
 
-    if not prompt:
-        return jsonify({"error": "Brak prompta"}), 400
+    if not history:
+        return jsonify({"error": "Brak historii"}), 400
 
-    instructions = (
-        "You are a helpful assistant. Answer only questions relating cars and motorization. "
-        "If the question is not related to cars, respond with "
-        "'I can only answer questions about cars and motorization.'"
-    )
-    full_prompt = f"{instructions}\nAnswer this message from user: {prompt}"
+    response_text = send_to_gemini(history)
 
-    response = send_to_gemini(full_prompt)
-    return jsonify({"response": response})
+    return jsonify({"response": response_text})
 
 if __name__ == "__main__":
     app.run(debug=True)
