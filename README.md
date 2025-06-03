@@ -136,3 +136,18 @@ Nagranie:
 
 https://github.com/user-attachments/assets/6dac034e-bf5b-42c8-b1e4-e3b21c8f8bf5
 
+
+**Zadanie 9** bot
+
+:white_check_mark: należy stworzyć po stronie serwerowej osobny serwis do łącznia z chatGPT do usługi chat [Link do commita 1](https://github.com/mawojcik/ebiznes/commit/5e8b3bf6fb7e5a1b50b39e4a5c51574514f36343)
+
+:white_check_mark: 3.5 należy stworzyć interfejs frontowy dla użytkownika, który komunikuje się z serwisem; odpowiedzi powinny być wysyałen do frontendowego interfejsu [Link do commita2](https://github.com/mawojcik/ebiznes/commit/5e8b3bf6fb7e5a1b50b39e4a5c51574514f36343)
+
+:white_check_mark: 4.0 stworzyć listę 5 różnych otwarć oraz zamknięć rozmowy [Link do commita 3](https://github.com/mawojcik/ebiznes/commit/10f15ec5b12d86b6789767cb669f9f008249b170)
+
+:white_check_mark: 4.5 filtrowanie po zagadnieniach związanych ze sklepem (np. ograniczenie się jedynie do ubrań oraz samego sklepu) do GPT [Link do commita 4](https://github.com/mawojcik/ebiznes/commit/10f15ec5b12d86b6789767cb669f9f008249b170)
+
+:x: 5.0 filtrowanie odpowiedzi po sentymencie [Link do commita 5](https://github.com/mawojcik/ebiznes/commit/b1c7f1a9825e59e4a25eb55f509db0885b0d4c7c)
+
+
+Kod: [exercise9](https://github.com/mawojcik/ebiznes/tree/main/exercise9)
