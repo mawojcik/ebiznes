@@ -156,3 +156,23 @@ Nagranie:
 
 https://github.com/user-attachments/assets/469f9713-aa0a-4c12-af48-2f35422f25c0
 
+**Zadanie 10** Chmura
+
+:white_check_mark: 3.0 Należy stworzyć odpowiednie instancje po stronie chmury na dockerze [Link do commita 1](https://github.com/mawojcik/ebiznes/tree/main/exercise10)
+
+:x: 3.5 Stworzyć odpowiedni pipeline w Github Actions do budowania aplikacji (np. via fatjar) [Link do commita2](https://github.com/mawojcik/ebiznes/)
+
+:x: 4.0 Dodać notyfikację mailową o zbudowaniu aplikacji [Link do commita 3](https://github.com/mawojcik/ebiznes/commit/)
+
+:x: 4.5 Dodać krok z deploymentem aplikacji serwerowej oraz klienckiej na chmurę [Link do commita 4](https://github.com/mawojcik/ebiznes/)
+
+:x: 5.0 Dodać uruchomienie regresyjnych testów automatycznych (funkcjonalnych) jako krok w Actions [Link do commita 5](https://github.com/mawojcik/ebiznes/)
+
+
+Kod: [exercise10](https://github.com/mawojcik/ebiznes/tree/main/exercise10)
+
+Nagranie:
+
+https://github.com/user-attachments/assets/82a7ab49-e9d4-46a5-8554-915302ba2e0d
+
+
