@@ -20,8 +20,6 @@ WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
 
 @app.get("/weather")
 async def get_weather(city: str):
-    print("-----------------")
-    print(WEATHER_API_KEY)
     url = f"https://api.weatherapi.com/v1/forecast.json?key={WEATHER_API_KEY}&q={city}&days=3&aqi=no&alerts=no"
     response = requests.get(url)
     return response.json()
