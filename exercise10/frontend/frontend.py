@@ -11,7 +11,7 @@ if city:
     st.title(f"Weather Forecast for {city}")
 
     try:
-        backend_url = f"http://backend:8000/weather?city={city}"
+        backend_url = f"https://weather-forecast-backend-3wba.onrender.com/weather?city={city}"
         response = requests.get(backend_url)
 
         if response.status_code == 200:
